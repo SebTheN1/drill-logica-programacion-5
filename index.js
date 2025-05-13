@@ -1,38 +1,27 @@
-function factorialnumber() {
-    let number;
+function juegoNumeroSecreto() {
+  const numeroSecreto = 27;
+  let numeroUsuario;
 
- // Validación 
-   
- while (true) { // Bucle infinito hasta que el usuario ingrese un número válido
-    const input = prompt("Ingrese un numero:");
+  while (true) {
+    const input = prompt("Adivina el número secreto (entre 1 y 100):");
+    numeroUsuario = parseInt(input);
 
-        // Convertir a número y validar
-      number = parseFloat(input);
-
-        if (!isNaN(number)) {
-            break; // Salir del bucle si es válido
-        } else {
-            alert("Error: Debe ingresar un número válido");
-        }
+    if (isNaN(numeroUsuario)) {
+      alert("Error: Debes ingresar un número válido.");
+      continue;
     }
 
-// Fórmula
-function calcularFactorial(num) {
-        let resultado = 1;
-        let pasos = "";
-
-        for (let i = 1; i <= num; i++) {
-            resultado *= i;
-            pasos += (i === 1) ? `${i}` : ` x ${i}`;
-        }
-
-        return { resultado, pasos };
+    if (numeroUsuario === numeroSecreto) {
+      const mensajeFinal = `
+        <p> Felicidades, adivinaste el número secreto: ${numeroSecreto}</p>
+       
+      `;
+      document.getElementById("resultado").innerHTML = mensajeFinal;
+      break;
+    } else {
+      alert("el número secreto es incorrecto, vuelve a intentarlo.");
     }
-
-    const { resultado, pasos } = calcularFactorial(number);
-    
-// Mostrar resultados en el DOM
-    document.getElementById('contenedor-factorial').innerHTML =`<h3>${number}! = ${pasos} = ${resultado}</h3>`;
+  }
 }
 
-window.onload = factorialnumber;
+window.onload = juegoNumeroSecreto;
